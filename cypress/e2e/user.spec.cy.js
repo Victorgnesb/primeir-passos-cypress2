@@ -17,7 +17,9 @@ describe('Orange HRM Tests', () => {
     genericField: ".oxd-input--active",
     myInfoSubmit : "[type='submit']",
     dateField : "[placeholder='yyyy-dd-mm']",
-    dateCloseButton: ".--close"
+    dateCloseButton: ".--close",
+    comboBox : ".oxd-select-text--arrow",
+    genderBox : ".oxd-radio-wrapper"
   }
   
   it.only('User Info Update - Sucess', () => {
@@ -36,7 +38,19 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.genericField) .eq(5)  .clear() .type ("551998")
     cy.get(selectorsList.dateField) .eq(0) .clear() .type ("2026-5-05")
     cy.get(selectorsList.dateCloseButton) .click()
-    cy.get(selectorsList.myInfoSubmit) .eq(0).click()
+    cy.get(selectorsList.comboBox) .eq(0) .click() 
+    cy.contains('Brazilian') .click()
+    cy.get(selectorsList.comboBox) .eq(1) .click() 
+    cy.contains('Married') .click()
+    cy.get(selectorsList.dateField) .eq(1) .clear() .type ("2077-5-05")
+    cy.get(selectorsList.dateCloseButton) .click()
+    cy.get(selectorsList.genderBox) .eq(1) .click()
+    cy.get(selectorsList.comboBox) .eq(2) .click() 
+    cy.contains('O+') .click()
+    cy.get(selectorsList.genericField) .eq(9) .clear() .type('Lume')    
+    cy.wait (1000)
+    cy.get(selectorsList.myInfoSubmit)  .eq(0)  .click()
+    cy.get('body') .should('contain', 'Successfully Updated')
     
   })
 

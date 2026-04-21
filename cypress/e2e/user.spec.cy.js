@@ -14,10 +14,10 @@ describe('Orange HRM Tests', () => {
     firstNameField : "[name='firstName']",
     middleNameField : "[name='middleName']",
     lastNameField : "[name='lastName']",
-    nickNameField: ".oxd-input--active",
+    genericField: ".oxd-input--active",
     myInfoSubmit : "[type='submit']",
-    employeeIdField : ".oxd-input--active",
-    driversLicField : ".oxd-input--active"
+    dateField : "[placeholder='yyyy-dd-mm']",
+    dateCloseButton: ".--close"
   }
   
   it.only('User Info Update - Sucess', () => {
@@ -31,10 +31,11 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.firstNameField) .clear() .type("Monkey")
     cy.get(selectorsList.middleNameField) .clear() .type("D.")
     cy.get(selectorsList.lastNameField) .clear() .type("Luffy")
-    cy.get(selectorsList.nickNameField) .eq(3)  .clear() .type ("Duffy")
-    cy.get(selectorsList.employeeIdField) .eq(4)  .clear() .type ("KOTP")
-    cy.get(selectorsList.nickNameField) .eq(5)  .clear() .type ("551998")
-    cy.get(selectorsList.driversLicField) .eq(6)  .clear() .type ("1234569")
+    cy.get(selectorsList.genericField) .eq(3)  .clear() .type ("Duffy")
+    cy.get(selectorsList.genericField) .eq(4)  .clear() .type ("KOTP")
+    cy.get(selectorsList.genericField) .eq(5)  .clear() .type ("551998")
+    cy.get(selectorsList.dateField) .eq(0) .clear() .type ("2026-5-05")
+    cy.get(selectorsList.dateCloseButton) .click()
     cy.get(selectorsList.myInfoSubmit) .eq(0).click()
     
   })
